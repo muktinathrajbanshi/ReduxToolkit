@@ -87,6 +87,8 @@ const taskReducer = createSlice({
 
 console.log(taskReducer);
 
+const { addTask, deleteTask } = taskReducer.actions;
+
 
 //! New Style
 export const store = configureStore({
