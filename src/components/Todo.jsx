@@ -15,6 +15,9 @@ export const Todo = () => {
     // handle handleFormSubmit 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+          if (task.trim() === "") {
+          return; 
+          }
         dispatch(addTask(task));
         return setTask("");
     };
