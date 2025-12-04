@@ -1,6 +1,3 @@
-// import { applyMiddleware, createStore } from "redux";
-// import { composeWithDevTools } from "@redux-devtools/extension";
-// import { thunk } from "redux-thunk";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 /* eslint-disable no-case-declarations */
@@ -44,58 +41,37 @@ export const fetchTask = () => {
 
 
 // Step 1: Create a simple reducer function 
-// const taskReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//         case ADD_TASK:
-//             return {
-//                 ... state,
-//                 task: [... state.task, action.payload],
-//             };
+const taskReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case ADD_TASK:
+            return {
+                ... state,
+                task: [... state.task, action.payload],
+            };
 
-//         case DELETE_TASK:
-//             const updatedTask = state.task.filter((curTask, index) => index !== action.payload); 
-//                return {
-//                 ...state,
-//                 task: updatedTask,
-//                };
+        case DELETE_TASK:
+            const updatedTask = state.task.filter((curTask, index) => index !== action.payload); 
+               return {
+                ...state,
+                task: updatedTask,
+               };
 
-//         case FETCH_TASKS: 
-//             return {
-//                 ...state,
-//                 task:[... state.task, ...action.payload],
-//             }       
-//         default:
-//             return state;
-//     }
-// };
+        case FETCH_TASKS: 
+            return {
+                ...state,
+                task:[... state.task, ...action.payload],
+            }       
+        default:
+            return state;
+    }
+};
 
-//! Step 2: Create the Redux store using the reducer 
-// export const store = createStore(
-//     taskReducer, 
-//     composeWithDevTools(applyMiddleware(thunk))
-// );
-
-//? RTK slice
-const taskReducer = createSlice({
-    name: "task",
-    initialState,
-    reducers: {
-        addTask(state, action) {},
-        deleteTask(state, action) {},
-    },
-});
-
-console.log(taskReducer);
-
-const { addTask, deleteTask } = taskReducer.actions;
-
-
-//! New Style
 export const store = configureStore({
     reducer: {
         taskReducer,
     },
 });
+
 
 // Step 3: Log the initial state 
 console.log("initial State: ", store.getState());

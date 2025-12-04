@@ -8,7 +8,6 @@ export const Todo = () => {
     const [task, setTask] = useState("");
 
     const tasks = useSelector((state) => state.taskReducer.task);
-    // console.log("react states", state.task);
 
     const dispatch = useDispatch();
 
@@ -17,7 +16,7 @@ export const Todo = () => {
         e.preventDefault();
           if (task.trim() === "") {
           return; 
-          }
+          } 
         dispatch(addTask(task));
         return setTask("");
     };
